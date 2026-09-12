@@ -947,6 +947,11 @@ button {
   padding: 0 12px 12px;
 }
 
+.empty-state {
+  color: var(--muted);
+  padding: 14px;
+}
+
 @media (max-width: 980px) {
   .import-panel,
   .controls,

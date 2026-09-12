@@ -9,7 +9,16 @@ function loadSaveData() {
   } catch (error) {
     console.warn("No se pudo cargar la partida guardada en el navegador.", error);
   }
-  return window.ANIL_SAVE_DATA;
+  if (window.ANIL_SAVE_DATA?.party?.length || window.ANIL_SAVE_DATA?.boxes?.length) {
+    return window.ANIL_SAVE_DATA;
+  }
+  return {
+    player_name: "Sin partida",
+    party: [],
+    boxes: [],
+    inventory: [],
+    game_context: { badges: 3, current_level_cap: 39 }
+  };
 }
 
 const typeChart = {
@@ -660,6 +669,15 @@ function render() {
     if (p?.isDead) state.locked.delete(id);
   }
   const pool = currentPool();
+  if (!allPokemon.length) {
+    document.getElementById("summary").textContent = "Ejecuta abrir_optimizador.bat o carga un JSON de partida.";
+    document.getElementById("rosterCount").textContent = "0 mostrados";
+    document.getElementById("roster").innerHTML = `<p class="empty-state">No hay partida cargada.</p>`;
+    document.getElementById("recommendedTeam").innerHTML = `<p class="empty-state">Sin datos para optimizar.</p>`;
+    document.getElementById("teamScore").textContent = "";
+    document.getElementById("teamNotes").innerHTML = "";
+    return;
+  }
   const team = optimizeTeam(pool);
   document.getElementById("summary").textContent = `${save.player_name} · ${save.party.length} en equipo · ${save.boxes.reduce((n, b) => n + b.pokemon.length, 0)} en PC · ${gameContext.badges} medallas · nivel actual`;
   document.getElementById("rosterCount").textContent = `${pool.length} mostrados`;
@@ -1070,10 +1088,11 @@ function initializeComboScores() {
 function setDataStatus() {
   const status = document.getElementById("dataStatus");
   if (!status) return;
-  const source = localStorage.getItem(STORAGE_KEY) ? "JSON cargado" : "Datos de ejemplo";
+  const hasData = allPokemon.length > 0;
+  const source = localStorage.getItem(STORAGE_KEY) ? "JSON cargado" : hasData ? "Datos exportados" : "Sin partida cargada";
   const partyCount = save.party?.length || 0;
   const boxCount = (save.boxes || []).reduce((sum, box) => sum + (box.pokemon?.length || 0), 0);
-  status.textContent = `${source} · ${save.player_name || "Jugador"} · ${partyCount} equipo · ${boxCount} PC`;
+  status.textContent = hasData ? `${source} · ${save.player_name || "Jugador"} · ${partyCount} equipo · ${boxCount} PC` : `${source} · ejecuta abrir_optimizador.bat`;
 }
 
 async function handleSaveFileUpload(event) {
