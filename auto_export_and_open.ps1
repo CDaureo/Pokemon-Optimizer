@@ -1,12 +1,41 @@
 $ErrorActionPreference = "Stop"
 
 $optimizerDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-$gameDir = Split-Path -Parent $optimizerDir
-$extractor = Join-Path $gameDir "tools\extract_anil_save.py"
+$parentDir = Split-Path -Parent $optimizerDir
+$extractor = Join-Path $optimizerDir "tools\extract_anil_save.py"
 $index = Join-Path $optimizerDir "index.html"
 $jsonOut = Join-Path $optimizerDir "save_export.json"
 $appDataOut = Join-Path $optimizerDir "app-data.js"
 $saveDir = Join-Path $env:APPDATA "Pokemon Anil"
+
+function Test-GameDir($path) {
+  return $path -and (Test-Path (Join-Path $path "PBS")) -and (Test-Path (Join-Path $path "Data"))
+}
+
+function Find-GameDir {
+  $candidates = @(
+    $optimizerDir,
+    $parentDir,
+    (Split-Path -Parent $parentDir)
+  )
+
+  foreach ($candidate in $candidates) {
+    if (Test-GameDir $candidate) {
+      return $candidate
+    }
+  }
+
+  $desktop = [Environment]::GetFolderPath("Desktop")
+  $found = Get-ChildItem -Path $desktop -Directory -Recurse -ErrorAction SilentlyContinue |
+    Where-Object { Test-GameDir $_.FullName } |
+    Select-Object -First 1
+
+  if ($found) {
+    return $found.FullName
+  }
+
+  throw "No encuentro la carpeta del juego. Pon Pokemon-Optimizer-main dentro de la carpeta de Pokemon Añil, o junto a una carpeta que tenga PBS y Data."
+}
 
 function Find-Python {
   $candidates = @(
@@ -74,6 +103,7 @@ if (!(Test-Path $index)) {
 }
 
 $python = Find-Python
+$gameDir = Find-GameDir
 $savePath = Find-Save
 $tmCompatibility = Find-TmCompatibility $savePath
 
