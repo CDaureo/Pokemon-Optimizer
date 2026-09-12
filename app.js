@@ -1,5 +1,16 @@
-const save = window.ANIL_SAVE_DATA;
+const STORAGE_KEY = "anil_optimizer_save_json";
+const save = loadSaveData();
 const gameContext = save.game_context || { badges: 3, current_level_cap: 39 };
+
+function loadSaveData() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) return JSON.parse(stored);
+  } catch (error) {
+    console.warn("No se pudo cargar la partida guardada en el navegador.", error);
+  }
+  return window.ANIL_SAVE_DATA;
+}
 
 const typeChart = {
   NORMAL: { weak: ["FIGHTING"], resist: [], immune: ["GHOST"] },
@@ -1056,11 +1067,43 @@ function initializeComboScores() {
   }
 }
 
+function setDataStatus() {
+  const status = document.getElementById("dataStatus");
+  if (!status) return;
+  const source = localStorage.getItem(STORAGE_KEY) ? "JSON cargado" : "Datos de ejemplo";
+  const partyCount = save.party?.length || 0;
+  const boxCount = (save.boxes || []).reduce((sum, box) => sum + (box.pokemon?.length || 0), 0);
+  status.textContent = `${source} · ${save.player_name || "Jugador"} · ${partyCount} equipo · ${boxCount} PC`;
+}
+
+async function handleSaveFileUpload(event) {
+  const file = event.target.files?.[0];
+  if (!file) return;
+  try {
+    const data = JSON.parse(await file.text());
+    if (!Array.isArray(data.party) || !Array.isArray(data.boxes)) {
+      throw new Error("El JSON no tiene party/boxes.");
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    location.reload();
+  } catch (error) {
+    alert("No pude cargar ese JSON. Usa el save_export.json generado por el extractor de Pokemon Añil.");
+    console.error(error);
+  }
+}
+
+function resetLoadedData() {
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+
 document.getElementById("searchInput").addEventListener("input", render);
 document.getElementById("includeDead").addEventListener("change", render);
 document.getElementById("onlyAvailable").addEventListener("change", render);
 document.getElementById("flatList").addEventListener("change", render);
 document.getElementById("optimizeBtn").addEventListener("click", handleOptimizeClick);
+document.getElementById("saveFileInput").addEventListener("change", handleSaveFileUpload);
+document.getElementById("resetDataBtn").addEventListener("click", resetLoadedData);
 document.addEventListener("click", (event) => {
   const sortButton = event.target.closest("button[data-sort-table]");
   if (sortButton) {
@@ -1099,4 +1142,5 @@ document.addEventListener("keydown", (event) => {
 });
 
 initializeComboScores();
+setDataStatus();
 render();

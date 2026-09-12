@@ -20277,6 +20277,19 @@
               "CanMirrorMove"
             ],
             "source": "random_tm"
+          },
+          {
+            "id": "RAINDANCE",
+            "name": "Danza Lluvia",
+            "type": "WATER",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 5,
+            "description": "Genera una fuerte lluvia que refuerza los movimientos de tipo Agua durante cinco turnos.",
+            "function_code": "StartRainWeather",
+            "flags": [],
+            "source": "random_tm"
           }
         ],
         "all": [
@@ -21815,6 +21828,19 @@
               "CanMirrorMove"
             ],
             "source": "random_tm"
+          },
+          {
+            "id": "RAINDANCE",
+            "name": "Danza Lluvia",
+            "type": "WATER",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 5,
+            "description": "Genera una fuerte lluvia que refuerza los movimientos de tipo Agua durante cinco turnos.",
+            "function_code": "StartRainWeather",
+            "flags": [],
+            "source": "random_tm"
           }
         ],
         "level_source": "random_level"
@@ -23045,6 +23071,321 @@
               "CannotMetronome"
             ],
             "source": "random_tm"
+          },
+          {
+            "id": "ICEBEAM",
+            "name": "Rayo Hielo",
+            "type": "ICE",
+            "category": "Special",
+            "power": 90,
+            "accuracy": 100,
+            "total_pp": 10,
+            "description": "Rayo de hielo que puede llegar a congelar.",
+            "function_code": "FreezeTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "ICEBURN",
+            "name": "Llama Gelida",
+            "type": "ICE",
+            "category": "Special",
+            "power": 140,
+            "accuracy": 90,
+            "total_pp": 5,
+            "description": "Ataca al objetivo en el segundo turno rodeandolo de un aire gelido. Puede causar quemaduras.",
+            "function_code": "TwoTurnAttackBurnTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove",
+              "CannotMetronome"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "TROPKICK",
+            "name": "Patada Tropical",
+            "type": "GRASS",
+            "category": "Physical",
+            "power": 70,
+            "accuracy": 100,
+            "total_pp": 15,
+            "description": "Lanza una patada con la fuerza del tropico que golpea al rival y reduce su Ataque.",
+            "function_code": "LowerTargetAttack1",
+            "flags": [
+              "Contact",
+              "CanProtect",
+              "CanMirrorMove",
+              "Kicking"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FLORALHEALING",
+            "name": "Cura Floral",
+            "type": "FAIRY",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 10,
+            "description": "Restaura la mitad de los PS maximos del objetivo. Cura mas con campo de hierba.",
+            "function_code": "HealTargetDependingOnGrassyTerrain",
+            "flags": [
+              "CanProtect"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "DECORATE",
+            "name": "Decoracion",
+            "type": "FAIRY",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 15,
+            "description": "El usuario aumenta el Ataque y el Ataque Especial del objetivo decorandolo.",
+            "function_code": "RaiseTargetAtkSpAtk2",
+            "flags": [
+              "CannotMetronome"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "BEHEMOTHBLADE",
+            "name": "Tajo Supremo",
+            "type": "STEEL",
+            "category": "Physical",
+            "power": 100,
+            "accuracy": 100,
+            "total_pp": 5,
+            "description": "El usuario se convierte en una espada gigante para rebanar al objetivo.",
+            "function_code": "None",
+            "flags": [
+              "Contact",
+              "CanProtect",
+              "CanMirrorMove",
+              "CannotMetronome",
+              "Slicing"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "DARKVOID",
+            "name": "Brecha Negra",
+            "type": "DARK",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 50,
+            "total_pp": 10,
+            "description": "El objetivo es enviado a un mundo de tinieblas que lo hace dormir.",
+            "function_code": "SleepTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "PURIFY",
+            "name": "Purificacion",
+            "type": "POISON",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 20,
+            "description": "Cura los problemas de estado del Pokemon rival y a cambio recupera PS propios.",
+            "function_code": "CureTargetStatusHealUserHalfOfTotalHP",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FORESTSCURSE",
+            "name": "Condena Silvana",
+            "type": "GRASS",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 100,
+            "total_pp": 20,
+            "description": "Presa de la maldicion del bosque, el rival pasa a ser de tipo Planta, ademas de los suyos.",
+            "function_code": "AddGrassTypeToTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "RAINDANCE",
+            "name": "Danza Lluvia",
+            "type": "WATER",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 5,
+            "description": "Genera una fuerte lluvia que refuerza los movimientos de tipo Agua durante cinco turnos.",
+            "function_code": "StartRainWeather",
+            "flags": [],
+            "source": "random_tm"
+          },
+          {
+            "id": "PETALBLIZZARD",
+            "name": "Tormenta Floral",
+            "type": "GRASS",
+            "category": "Physical",
+            "power": 90,
+            "accuracy": 100,
+            "total_pp": 15,
+            "description": "El usuario desata un intenso vendaval de petalos que daña a los Pokemon a su alrededor.",
+            "function_code": "None",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove",
+              "Wind"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "SCALESHOT",
+            "name": "Rafaga Escamas",
+            "type": "DRAGON",
+            "category": "Physical",
+            "power": 25,
+            "accuracy": 90,
+            "total_pp": 20,
+            "description": "Lanza escamas de dos a cinco veces. Sube la Velocidad del usuario pero reduce su Defensa.",
+            "function_code": "HitTwoToFiveTimesRaiseUserSpd1LowerUserDef1",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FAIRYLOCK",
+            "name": "Cerrojo Feerico",
+            "type": "FAIRY",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 10,
+            "description": "Consigue que ningun Pokemon pueda huir en el siguiente turno echando un cerrojo.",
+            "function_code": "TrapAllBattlersInBattleForOneTurn",
+            "flags": [
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "MAGICCOAT",
+            "name": "Capa Magica",
+            "type": "PSYCHIC",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 15,
+            "description": "Barrera capaz de devolver al agresor movimientos como drenadoras y que alteran el estado.",
+            "function_code": "BounceBackProblemCausingStatusMoves",
+            "flags": [],
+            "source": "random_tm"
+          },
+          {
+            "id": "REFLECT",
+            "name": "Reflejo",
+            "type": "PSYCHIC",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 20,
+            "description": "Pared de luz que reduce durante cinco turnos el daño producido por los ataques fisicos.",
+            "function_code": "StartWeakenPhysicalDamageAgainstUserSide",
+            "flags": [],
+            "source": "random_tm"
+          },
+          {
+            "id": "SMOKESCREEN",
+            "name": "Pantalla de Humo",
+            "type": "NORMAL",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 100,
+            "total_pp": 20,
+            "description": "Baja la Precision del objetivo con una nube de humo o tinta.",
+            "function_code": "LowerTargetAccuracy1",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "ENTRAINMENT",
+            "name": "Danza Amiga",
+            "type": "NORMAL",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 100,
+            "total_pp": 15,
+            "description": "Una extraña danza que hace que el usuario y el objetivo tengan la misma habilidad.",
+            "function_code": "SetTargetAbilityToUserAbility",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "GIGADRAIN",
+            "name": "Gigadrenado",
+            "type": "GRASS",
+            "category": "Special",
+            "power": 75,
+            "accuracy": 100,
+            "total_pp": 10,
+            "description": "Absorbe la mitad del daño producido.",
+            "function_code": "HealUserByHalfOfDamageDone",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FLOWERTRICK",
+            "name": "Truco Floral",
+            "type": "GRASS",
+            "category": "Physical",
+            "power": 70,
+            "accuracy": 0,
+            "total_pp": 10,
+            "description": "Lanza un ramo de flores trucado. No falla nunca y siempre asesta un golpe critico.",
+            "function_code": "AlwaysCriticalHit",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "CHARGEBEAM",
+            "name": "Rayo Carga",
+            "type": "ELECTRIC",
+            "category": "Special",
+            "power": 50,
+            "accuracy": 90,
+            "total_pp": 10,
+            "description": "Lanza un rayo electrico contra el rival. Puede subir el Ataque Especial de quien lo usa.",
+            "function_code": "RaiseUserSpAtk1",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
           }
         ],
         "all": [
@@ -24096,6 +24437,279 @@
               "CanProtect",
               "CanMirrorMove",
               "CannotMetronome"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "ICEBURN",
+            "name": "Llama Gelida",
+            "type": "ICE",
+            "category": "Special",
+            "power": 140,
+            "accuracy": 90,
+            "total_pp": 5,
+            "description": "Ataca al objetivo en el segundo turno rodeandolo de un aire gelido. Puede causar quemaduras.",
+            "function_code": "TwoTurnAttackBurnTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove",
+              "CannotMetronome"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "TROPKICK",
+            "name": "Patada Tropical",
+            "type": "GRASS",
+            "category": "Physical",
+            "power": 70,
+            "accuracy": 100,
+            "total_pp": 15,
+            "description": "Lanza una patada con la fuerza del tropico que golpea al rival y reduce su Ataque.",
+            "function_code": "LowerTargetAttack1",
+            "flags": [
+              "Contact",
+              "CanProtect",
+              "CanMirrorMove",
+              "Kicking"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FLORALHEALING",
+            "name": "Cura Floral",
+            "type": "FAIRY",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 10,
+            "description": "Restaura la mitad de los PS maximos del objetivo. Cura mas con campo de hierba.",
+            "function_code": "HealTargetDependingOnGrassyTerrain",
+            "flags": [
+              "CanProtect"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "DECORATE",
+            "name": "Decoracion",
+            "type": "FAIRY",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 15,
+            "description": "El usuario aumenta el Ataque y el Ataque Especial del objetivo decorandolo.",
+            "function_code": "RaiseTargetAtkSpAtk2",
+            "flags": [
+              "CannotMetronome"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "BEHEMOTHBLADE",
+            "name": "Tajo Supremo",
+            "type": "STEEL",
+            "category": "Physical",
+            "power": 100,
+            "accuracy": 100,
+            "total_pp": 5,
+            "description": "El usuario se convierte en una espada gigante para rebanar al objetivo.",
+            "function_code": "None",
+            "flags": [
+              "Contact",
+              "CanProtect",
+              "CanMirrorMove",
+              "CannotMetronome",
+              "Slicing"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "DARKVOID",
+            "name": "Brecha Negra",
+            "type": "DARK",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 50,
+            "total_pp": 10,
+            "description": "El objetivo es enviado a un mundo de tinieblas que lo hace dormir.",
+            "function_code": "SleepTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "PURIFY",
+            "name": "Purificacion",
+            "type": "POISON",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 20,
+            "description": "Cura los problemas de estado del Pokemon rival y a cambio recupera PS propios.",
+            "function_code": "CureTargetStatusHealUserHalfOfTotalHP",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FORESTSCURSE",
+            "name": "Condena Silvana",
+            "type": "GRASS",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 100,
+            "total_pp": 20,
+            "description": "Presa de la maldicion del bosque, el rival pasa a ser de tipo Planta, ademas de los suyos.",
+            "function_code": "AddGrassTypeToTarget",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "PETALBLIZZARD",
+            "name": "Tormenta Floral",
+            "type": "GRASS",
+            "category": "Physical",
+            "power": 90,
+            "accuracy": 100,
+            "total_pp": 15,
+            "description": "El usuario desata un intenso vendaval de petalos que daña a los Pokemon a su alrededor.",
+            "function_code": "None",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove",
+              "Wind"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "SCALESHOT",
+            "name": "Rafaga Escamas",
+            "type": "DRAGON",
+            "category": "Physical",
+            "power": 25,
+            "accuracy": 90,
+            "total_pp": 20,
+            "description": "Lanza escamas de dos a cinco veces. Sube la Velocidad del usuario pero reduce su Defensa.",
+            "function_code": "HitTwoToFiveTimesRaiseUserSpd1LowerUserDef1",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FAIRYLOCK",
+            "name": "Cerrojo Feerico",
+            "type": "FAIRY",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 10,
+            "description": "Consigue que ningun Pokemon pueda huir en el siguiente turno echando un cerrojo.",
+            "function_code": "TrapAllBattlersInBattleForOneTurn",
+            "flags": [
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "REFLECT",
+            "name": "Reflejo",
+            "type": "PSYCHIC",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 0,
+            "total_pp": 20,
+            "description": "Pared de luz que reduce durante cinco turnos el daño producido por los ataques fisicos.",
+            "function_code": "StartWeakenPhysicalDamageAgainstUserSide",
+            "flags": [],
+            "source": "random_tm"
+          },
+          {
+            "id": "SMOKESCREEN",
+            "name": "Pantalla de Humo",
+            "type": "NORMAL",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 100,
+            "total_pp": 20,
+            "description": "Baja la Precision del objetivo con una nube de humo o tinta.",
+            "function_code": "LowerTargetAccuracy1",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "ENTRAINMENT",
+            "name": "Danza Amiga",
+            "type": "NORMAL",
+            "category": "Status",
+            "power": 0,
+            "accuracy": 100,
+            "total_pp": 15,
+            "description": "Una extraña danza que hace que el usuario y el objetivo tengan la misma habilidad.",
+            "function_code": "SetTargetAbilityToUserAbility",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "GIGADRAIN",
+            "name": "Gigadrenado",
+            "type": "GRASS",
+            "category": "Special",
+            "power": 75,
+            "accuracy": 100,
+            "total_pp": 10,
+            "description": "Absorbe la mitad del daño producido.",
+            "function_code": "HealUserByHalfOfDamageDone",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "FLOWERTRICK",
+            "name": "Truco Floral",
+            "type": "GRASS",
+            "category": "Physical",
+            "power": 70,
+            "accuracy": 0,
+            "total_pp": 10,
+            "description": "Lanza un ramo de flores trucado. No falla nunca y siempre asesta un golpe critico.",
+            "function_code": "AlwaysCriticalHit",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
+            ],
+            "source": "random_tm"
+          },
+          {
+            "id": "CHARGEBEAM",
+            "name": "Rayo Carga",
+            "type": "ELECTRIC",
+            "category": "Special",
+            "power": 50,
+            "accuracy": 90,
+            "total_pp": 10,
+            "description": "Lanza un rayo electrico contra el rival. Puede subir el Ataque Especial de quien lo usa.",
+            "function_code": "RaiseUserSpAtk1",
+            "flags": [
+              "CanProtect",
+              "CanMirrorMove"
             ],
             "source": "random_tm"
           }
