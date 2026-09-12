@@ -38,7 +38,9 @@ function Find-GameDir {
 }
 
 function Find-Python {
+  $portable = Join-Path $optimizerDir "runtime\python\python.exe"
   $candidates = @(
+    $portable,
     (Join-Path $env:LOCALAPPDATA "Python\pythoncore-3.14-64\python.exe"),
     "python",
     "py"
@@ -47,12 +49,45 @@ function Find-Python {
   foreach ($candidate in $candidates) {
     try {
       $cmd = Get-Command $candidate -ErrorAction Stop
-      return $cmd.Source
+      $version = & $cmd.Source --version 2>&1
+      if ($LASTEXITCODE -eq 0 -and "$version" -match "^Python ") {
+        return $cmd.Source
+      }
     } catch {
     }
   }
 
-  throw "No encuentro Python. Instala Python o ejecuta el extractor manualmente."
+  return Install-PortablePython
+}
+
+function Install-PortablePython {
+  $runtimeDir = Join-Path $optimizerDir "runtime"
+  $pythonDir = Join-Path $runtimeDir "python"
+  $pythonExe = Join-Path $pythonDir "python.exe"
+  $zipPath = Join-Path $runtimeDir "python-embed.zip"
+  $url = "https://www.python.org/ftp/python/3.12.10/python-3.12.10-embed-amd64.zip"
+
+  if (Test-Path $pythonExe) {
+    return $pythonExe
+  }
+
+  New-Item -ItemType Directory -Force -Path $runtimeDir, $pythonDir | Out-Null
+  Write-Host "No encuentro Python real. Descargando Python portable..."
+
+  try {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    Invoke-WebRequest -Uri $url -OutFile $zipPath -UseBasicParsing
+    Expand-Archive -LiteralPath $zipPath -DestinationPath $pythonDir -Force
+    Remove-Item -LiteralPath $zipPath -Force
+  } catch {
+    throw "No pude descargar Python portable. Conecta internet o instala Python desde python.org y vuelve a abrir DOBLE_CLICK_AQUI.cmd. Detalle: $($_.Exception.Message)"
+  }
+
+  if (!(Test-Path $pythonExe)) {
+    throw "Se descargo Python portable, pero no encuentro python.exe en $pythonExe"
+  }
+
+  return $pythonExe
 }
 
 function Find-Save {
